@@ -1,9 +1,0 @@
-# Environment Variables Template
-# Copy this file to .env and fill in your actual values
-
-# Gmail credentials for contact form
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-
-# Server configuration
-PORT=3000
