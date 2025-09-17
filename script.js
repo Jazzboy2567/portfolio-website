@@ -104,8 +104,14 @@ document.querySelectorAll('.project-card, .skill-category').forEach(el => {
 // Navbar scroll effect
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
+    const currentTheme = document.body.getAttribute('data-theme');
+    
     if (window.scrollY > 100) {
-        navbar.style.backgroundColor = 'rgba(248, 249, 250, 0.95)';
+        if (currentTheme === 'dark') {
+            navbar.style.backgroundColor = 'rgba(45, 45, 45, 0.95)';
+        } else {
+            navbar.style.backgroundColor = 'rgba(248, 249, 250, 0.95)';
+        }
         navbar.style.backdropFilter = 'blur(10px)';
     } else {
         navbar.style.backgroundColor = 'var(--card-bg)';
