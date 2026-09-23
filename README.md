@@ -1,115 +1,92 @@
-# 🚀 Portfolio Website
+# Portfolio & Log
 
-<div align="center">
+**[Live site](https://jazzboy2567.github.io/portfolio-website/)** · [Vercel mirror](https://portfolio-website-zeta-ruddy.vercel.app)
 
-![Portfolio Preview](https://img.shields.io/badge/Live%20Demo-View%20Portfolio-blue?style=for-the-badge&logo=github)
-![Status](https://img.shields.io/badge/Status-Live-green?style=for-the-badge)
-![Tech Stack](https://img.shields.io/badge/Tech%20Stack-HTML%20%7C%20CSS%20%7C%20JS-orange?style=for-the-badge)
+My portfolio and a daily log of what I'm building. It's a static site generated
+from Markdown and JSON by a small Node script, with no framework. GitHub Pages
+and Vercel both build it from `main`, and the contact form runs as a Vercel
+serverless function.
 
-**[🌐 Live Website](https://jazzboy2567.github.io/portfolio-website/)** | **[📁 Repository](https://github.com/jazzboy2567/portfolio-website)**
+## Writing a log entry
 
-</div>
-
----
-
-A modern, responsive portfolio website showcasing software engineering projects and skills. Built with clean, semantic code and featuring an elegant dark/light theme toggle.
-
-## ✨ Features
-
-- 🌙 **Dark/Light Theme Toggle** - Seamless theme switching with smooth transitions
-- 📱 **Fully Responsive Design** - Optimized for all devices and screen sizes
-- ✨ **Smooth Animations** - CSS animations and transitions for enhanced UX
-- 📧 **Contact Form** - Integrated email functionality with Nodemailer
-- 🎨 **Modern UI/UX** - Clean, professional design with attention to detail
-- ⚡ **Fast Loading** - Optimized performance and minimal dependencies
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **HTML5** - Semantic markup and accessibility
-- **CSS3** - Modern styling with Flexbox/Grid
-- **JavaScript (ES6+)** - Interactive functionality and DOM manipulation
-
-### Backend
-- **Node.js** - Server-side runtime
-- **Express.js** - Web application framework
-- **Nodemailer** - Email service integration
-
-## 🎯 Featured Projects
-
-| Project | Language | Description |
-|---------|----------|-------------|
-| **[ClueGame](https://github.com/jazzboy2567/portfolio-website)** | Java | Interactive board game implementation with GUI and comprehensive game logic |
-| **[TreeNodes](https://github.com/jazzboy2567/portfolio-website)** | C++ | Advanced data structure implementation featuring various traversal algorithms |
-| **[RouteFindingAlgorithm](https://github.com/jazzboy2567/portfolio-website)** | Python | Pathfinding algorithm optimization with interactive visualization |
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/jazzboy2567/portfolio-website.git
-   cd portfolio-website
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm start
-   ```
-
-4. **Open your browser**
-   ```
-   http://localhost:3000
-   ```
-
-## 📁 Project Structure
-
-```
-portfolio-website/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles and animations
-├── script.js           # JavaScript functionality
-├── server.js           # Express server setup
-├── package.json        # Dependencies and scripts
-├── vercel.json         # Deployment configuration
-└── README.md           # Project documentation
+```bash
+npm run post -- "Fixed the EventScout map filter"   # creates content/posts/<today>-fixed-the-eventscout-map-filter.md
+# write the entry, preview with npm run dev
+git add content/posts && git commit -m "log: fixed the map filter" && git push
 ```
 
-## 🌐 Deployment
+Each entry is Markdown with a small front matter block:
 
-This portfolio is deployed on **GitHub Pages** and **Vercel** for optimal performance and reliability.
-
-- **GitHub Pages**: [jazzboy2567.github.io/portfolio-website](https://jazzboy2567.github.io/portfolio-website/)
-- **Vercel**: Automatic deployments from main branch
-
-## 📧 Contact
-
-<div align="center">
-
-**Jazzboy2567** - Software Engineer & Problem Solver
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Site-blue?style=flat-square&logo=github)](https://jazzboy2567.github.io/portfolio-website/)
-[![Email](https://img.shields.io/badge/Email-Contact%20Me-red?style=flat-square&logo=gmail)](mailto:your-email@example.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/in/jazzboy2567)
-
-</div>
-
+```markdown
+---
+title: Fixed the EventScout map filter
+date: 2026-09-23
+summary: One sentence shown in the log list and RSS feed.
+tags: [javascript, bugfix]
+projects: [eventscout]        # ids from content/projects.json
+certs: []                     # ids from content/certifications.json
+draft: false                  # true keeps it out of the build
 ---
 
-<div align="center">
+What I did today…
+```
 
-**⭐ Star this repository if you found it helpful!**
+Tagging a project or certification links them both ways. The entry shows the
+project, and the project's card on the home page links to every entry about it.
+A misspelled id fails the build and lists the valid ids.
 
-Made with ❤️ by [Jazzboy2567](https://github.com/jazzboy2567)
+## Editing the rest of the site
 
-</div>
+| What | Where |
+| --- | --- |
+| Name, tagline, about, skills, background | `content/site.json` |
+| Projects (`featured: false` puts it in the smaller-projects list) | `content/projects.json` |
+| Certifications (section appears once the list isn't empty) | `content/certifications.json` |
+| Page markup | `src/templates.js` |
+| Styles / client JS | `public/` |
+
+A certification looks like this:
+
+```json
+{
+  "id": "aws-ccp",
+  "name": "AWS Certified Cloud Practitioner",
+  "issuer": "Amazon Web Services",
+  "date": "2026-10",
+  "status": "earned",
+  "url": "https://www.credly.com/badges/…",
+  "skills": ["AWS", "Cloud"]
+}
+```
+
+Use `"status": "in-progress"` and leave `date`/`url` empty while you're working
+toward one. Log entries tagged with it will show your progress.
+
+## Deployment
+
+- **GitHub Pages:** `.github/workflows/pages.yml` builds and deploys `dist/` on
+  every push to `main`. Requires Settings → Pages → Source: **GitHub Actions**.
+- **Vercel:** builds with `npm run build` and serves `dist/` plus `api/`
+  (`vercel.json`). Set `EMAIL_USER`/`EMAIL_PASS` for the contact form. Optional:
+  `EMAIL_TO`, `EMAIL_FROM`, `CORS_ORIGIN`, or `SMTP_HOST`/`SMTP_PORT`/`SMTP_USER`/`SMTP_PASS`.
+
+## Local development
+
+```bash
+npm install
+npm run dev      # builds to dist/, rebuilds on changes, serves http://localhost:3000
+```
+
+The contact form sends real email if `EMAIL_USER`/`EMAIL_PASS` are in `.env`.
+
+## Layout
+
+```
+content/            site data + posts
+public/             static assets (styles, scripts), copied into dist/
+src/templates.js    HTML for every page
+src/frontmatter.js  post front matter parser
+scripts/build.js    content/ + public/ → dist/
+api/contact.js      contact form (Vercel function; also mounted by server.js)
+dist/               build output (not committed)
+```
