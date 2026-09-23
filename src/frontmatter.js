@@ -1,6 +1,6 @@
 // Minimal front matter: `key: value` lines between `---` fences. Values may be
 // [a, b, c] lists, true/false, or (optionally quoted) strings. Lines starting
-// with # are comments.
+// with # are comments. Shared by the build script and the admin API.
 
 const unquote = (s) => s.replace(/^(["'])(.*)\1$/, '$2');
 

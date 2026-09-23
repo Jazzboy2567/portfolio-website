@@ -415,6 +415,80 @@ ${post.html}
   });
 }
 
+// ---------------------------------------------------------------- admin
+
+// Static shell for the post editor; public/admin.js does the rest. The API
+// only runs on Vercel, so the GitHub Pages copy sends you there.
+function adminPage({ site, hasCerts }) {
+  const root = '../';
+  const body = `
+    <section class="section container admin" id="admin" data-admin-url="${esc(new URL('admin/', site.contactEndpoint).href)}">
+      <p class="admin-msg muted" id="admin-loading">Loading…</p>
+
+      <form class="panel admin-login" id="login-form" hidden>
+        <div class="panel-bar"><span class="mono">admin</span></div>
+        <div class="panel-body">
+          <h1>Log in</h1>
+          <label>Password<input type="password" name="password" autocomplete="current-password" required></label>
+          <button class="btn btn-primary" type="submit">Log in</button>
+          <p class="form-status" id="login-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div class="admin-app" id="admin-app" hidden>
+        <aside class="admin-side">
+          <button class="btn btn-primary" type="button" id="today-btn">Today's entry</button>
+          <button class="btn" type="button" id="new-btn">New entry</button>
+          <h2 class="panel-label">Entries</h2>
+          <ul class="admin-posts" id="post-list"></ul>
+          <button class="btn admin-logout" type="button" id="logout-btn">Log out</button>
+        </aside>
+
+        <form class="panel admin-editor" id="editor" autocomplete="off">
+          <div class="panel-body">
+            <div class="editor-head">
+              <span class="mono muted" id="editor-slug">New entry</span>
+              <span class="status status-active" id="editor-state" hidden>Draft</span>
+            </div>
+            <div class="editor-row">
+              <label class="grow">Title<input name="title" required maxlength="200"></label>
+              <label>Date<input name="date" type="date" required></label>
+            </div>
+            <label><span>Summary <span class="muted">(one line for the log list and RSS)</span></span><input name="summary" maxlength="300"></label>
+            <label><span>Tags <span class="muted">(comma separated)</span></span><input name="tags" placeholder="python, bugfix"></label>
+            <fieldset><legend>Projects</legend><div class="chip-row" id="project-picks"></div></fieldset>
+            <fieldset id="cert-fieldset"><legend>Certifications</legend><div class="chip-row" id="cert-picks"></div></fieldset>
+            <div class="editor-tabs" role="tablist">
+              <button type="button" role="tab" aria-selected="true" data-tab="write">Write</button>
+              <button type="button" role="tab" aria-selected="false" data-tab="preview">Preview</button>
+            </div>
+            <textarea name="body" id="body" rows="18" spellcheck="true"></textarea>
+            <div class="prose editor-preview" id="preview" hidden></div>
+            <div class="form-foot editor-actions">
+              <button class="btn btn-primary" type="submit" data-draft="false">Publish</button>
+              <button class="btn" type="submit" data-draft="true">Save as draft</button>
+              <button class="btn btn-danger" type="button" id="delete-btn" hidden>Delete</button>
+              <p class="form-status" id="editor-status" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>`;
+
+  return layout({
+    site,
+    root,
+    active: null,
+    title: `Admin · ${site.name}`,
+    description: 'Log editor',
+    body,
+    hasCerts,
+    head: '<meta name="robots" content="noindex, nofollow">',
+    scripts: `<script src="https://cdn.jsdelivr.net/npm/marked@14/marked.min.js"></script>
+  <script src="../admin.js"></script>`,
+  });
+}
+
 // ---------------------------------------------------------------- rss
 
 function feed({ site, posts }) {
@@ -443,4 +517,4 @@ ${items}
 `;
 }
 
-module.exports = { homePage, blogIndexPage, postPage, feed };
+module.exports = { homePage, blogIndexPage, postPage, feed, adminPage };

@@ -1087,3 +1087,211 @@ a.cell:hover {
 .earlier li:target {
   background: var(--accent-soft);
 }
+
+/* ------------------------------------------------------------ admin */
+
+.btn-danger {
+  color: var(--danger);
+}
+.btn-danger:hover {
+  border-color: var(--danger);
+}
+
+.admin-msg {
+  padding: 40px 0;
+}
+.admin-login {
+  max-width: 380px;
+  margin: 40px auto;
+}
+.admin-login .panel-body,
+.admin-editor .panel-body {
+  display: grid;
+  gap: 14px;
+}
+.admin-login h1 {
+  font-size: 1.4rem;
+}
+
+.admin label,
+.admin legend {
+  display: grid;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.admin input:not([type='checkbox']),
+.admin textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+}
+.admin input:focus,
+.admin textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.admin input:disabled {
+  opacity: 0.6;
+}
+.admin textarea {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  resize: vertical;
+  min-height: 320px;
+}
+.admin fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.admin legend {
+  margin-bottom: 8px;
+}
+
+.admin-app {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.admin-side {
+  display: grid;
+  gap: 10px;
+  position: sticky;
+  top: 80px;
+}
+.admin-side .panel-label {
+  margin: 14px 0 0;
+}
+.admin-posts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 55vh;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.admin-posts li + li {
+  border-top: 1px solid var(--line);
+}
+.admin-posts li.muted {
+  padding: 12px 14px;
+  font-size: 0.9rem;
+}
+.admin-posts button {
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+  width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+}
+.admin-posts button:hover {
+  background: var(--chip);
+}
+.admin-posts button[aria-current] {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.admin-posts .mono {
+  font-size: 0.72rem;
+}
+.admin-logout {
+  justify-self: start;
+  margin-top: 6px;
+}
+
+.editor-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-row {
+  display: flex;
+  gap: 14px;
+}
+.editor-row .grow {
+  flex: 1;
+}
+.pick {
+  display: inline-flex !important;
+  cursor: pointer;
+}
+.pick input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.pick .chip {
+  padding: 4px 11px;
+  opacity: 0.55;
+}
+.pick input:checked + .chip {
+  opacity: 1;
+  border-color: currentColor;
+}
+.pick input:focus-visible + .chip {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.editor-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: -6px;
+}
+.editor-tabs button {
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.editor-tabs button[aria-selected='true'] {
+  background: var(--chip);
+  color: var(--text);
+}
+.editor-preview {
+  min-height: 320px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+@media (max-width: 860px) {
+  .admin-app {
+    grid-template-columns: 1fr;
+  }
+  .admin-side {
+    position: static;
+  }
+  .admin-posts {
+    max-height: 220px;
+  }
+}
+@media (max-width: 520px) {
+  .editor-row {
+    flex-direction: column;
+  }
+}
