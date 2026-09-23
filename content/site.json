@@ -1,0 +1,96 @@
+{
+  "name": "Matthew Nielsen",
+  "handle": "Jazzboy2567",
+  "role": "Software Engineer",
+  "location": "Issaquah, WA",
+  "url": "https://jazzboy2567.github.io/portfolio-website/",
+  "contactEndpoint": "https://portfolio-website-zeta-ruddy.vercel.app/api/contact",
+  "tagline": "I build tools that do the tedious parts for you: browser automation agents, data scrapers, analytics dashboards and local-first desktop apps.",
+  "about": [
+    "I'm a Computer Science graduate from the Colorado School of Mines (Robotics & Intelligent Systems) who builds tools I actually use. Most of my projects start with a chore I'd rather a program handle, like finding local events, tracking which League items win games or drafting cover letters. I keep going until the tool works end to end.",
+    "Lately that means Python and Node.js with Playwright or Puppeteer for the web, Electron for desktop apps, FastAPI/Flask/Express for backends, and SQLite or scikit-learn when the data needs to go somewhere. I care about privacy by default: most of what I build runs locally, needs no account and keeps your data on your machine.",
+    "I write a short log of what I work on each day, so you can see how the projects actually come together."
+  ],
+  "links": {
+    "github": "https://github.com/Jazzboy2567",
+    "linkedin": "https://www.linkedin.com/in/matthew-j-nielsen"
+  },
+  "skills": [
+    {
+      "group": "Languages",
+      "items": [
+        "Python",
+        "JavaScript / Node.js",
+        "Java",
+        "C++",
+        "SQL",
+        "GDScript",
+        "Lua",
+        "C"
+      ]
+    },
+    {
+      "group": "Web & backend",
+      "items": [
+        "Express",
+        "FastAPI",
+        "Flask",
+        "REST APIs",
+        "HTML / CSS",
+        "Jinja",
+        "Streamlit"
+      ]
+    },
+    {
+      "group": "Automation & data",
+      "items": [
+        "Playwright",
+        "Puppeteer",
+        "Cheerio",
+        "schema.org / JSON-LD",
+        "pandas",
+        "NumPy",
+        "scikit-learn",
+        "SQLite"
+      ]
+    },
+    {
+      "group": "Apps & tooling",
+      "items": [
+        "Electron",
+        "Godot 4",
+        "Docker",
+        "Git / GitHub",
+        "Linux",
+        "pytest",
+        "Ollama / LLM APIs"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "when": "Jun 2024 – Aug 2025",
+      "title": "Chess Instructor",
+      "org": "Chess4Life",
+      "detail": "Led small-group classes of 4–20 students aged 6–10."
+    },
+    {
+      "when": "Class of 2025",
+      "title": "B.S. Computer Science",
+      "org": "Colorado School of Mines",
+      "detail": "Robotics & Intelligent Systems specialization; Public Affairs minor (McBride Honors). ML, AI, operating systems, databases, algorithms."
+    },
+    {
+      "when": "Aug – Dec 2024",
+      "title": "CS Field Session: BPX Energy partnership",
+      "org": "Colorado School of Mines",
+      "detail": "Geospatial object identification with ArcGIS Pro, applying machine learning to site-analysis problems."
+    },
+    {
+      "when": "Mar 2020 – Jul 2022",
+      "title": "Programming Instructor",
+      "org": "Technosmartkids",
+      "detail": "Taught Lua and game development to 50+ students aged 7–14."
+    }
+  ]
+}

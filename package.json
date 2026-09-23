@@ -1,11 +1,13 @@
 {
   "name": "portfolio-website",
   "version": "1.0.0",
-  "description": "Personal portfolio website",
+  "description": "Portfolio and daily log for Matthew Nielsen",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js --serve",
+    "start": "npm run build && node server.js",
+    "post": "node scripts/new-post.js"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
@@ -14,13 +16,13 @@
     "nodemailer": "^10.0.10"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "marked": "^14.1.4"
   },
   "keywords": [
     "portfolio",
-    "website",
-    "personal"
+    "blog",
+    "static-site"
   ],
-  "author": "Jazzboy2567",
+  "author": "Matthew Nielsen (Jazzboy2567)",
   "license": "MIT"
 }
