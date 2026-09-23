@@ -50,8 +50,11 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     submitBtn.disabled = true;
     
     try {
-        // Try to send email via backend API
-        const response = await fetch('/api/contact', {
+        // GitHub Pages can't run the API, so post to the Vercel deployment from there
+        const endpoint = location.hostname.endsWith('github.io')
+            ? 'https://portfolio-website-zeta-ruddy.vercel.app/api/contact'
+            : '/api/contact';
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,9 +72,8 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         }
     } catch (error) {
         console.error('Error sending email:', error);
-        // Fallback: show success message even if backend fails
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        this.reset();
+        // Keep what they typed so nothing is lost
+        alert('Sorry, your message could not be sent. Please try again later or reach out on LinkedIn.');
     } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;

@@ -1,7 +1,18 @@
 const nodemailer = require('nodemailer');
 
+const escapeHtml = (s) =>
+  String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Vercel serverless function; server.js mounts the same handler for local dev.
 module.exports = async function handler(req, res) {
-  // CORS preflight support (useful if frontend is on a different domain)
+  // CORS so the GitHub Pages copy of the site can post here
   res.setHeader('Access-Control-Allow-Origin', process.env.CORS_ORIGIN || '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -15,30 +26,37 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { name, email, message } = req.body || {};
+    const { name, email, message, company } = req.body || {};
 
-    if (!name || !email || !message) {
-      return res.status(400).json({ success: false, message: 'Missing required fields' });
+    // Honeypot field: hidden from people, filled in by bots. Pretend it worked.
+    if (company) {
+      return res.status(200).json({ success: true, message: 'Email sent successfully' });
     }
 
-    // Transport using Gmail (App Password recommended) or custom SMTP
-    const useService = process.env.SMTP_SERVICE || 'gmail';
+    if (![name, email, message].every((v) => typeof v === 'string' && v.trim())) {
+      return res.status(400).json({ success: false, message: 'Missing required fields' });
+    }
+    if (!EMAIL_RE.test(email) || name.length > 200 || email.length > 320 || message.length > 5000) {
+      return res.status(400).json({ success: false, message: 'Invalid input' });
+    }
+
+    // Gmail (App Password) by default; set SMTP_HOST to use any other SMTP server
     const transporter = nodemailer.createTransport(
-      useService
+      process.env.SMTP_HOST
         ? {
-            service: useService,
-            auth: {
-              user: process.env.EMAIL_USER,
-              pass: process.env.EMAIL_PASS,
-            },
-          }
-        : {
             host: process.env.SMTP_HOST,
             port: Number(process.env.SMTP_PORT || 587),
             secure: process.env.SMTP_SECURE === 'true',
             auth: {
               user: process.env.SMTP_USER,
               pass: process.env.SMTP_PASS,
+            },
+          }
+        : {
+            service: process.env.SMTP_SERVICE || 'gmail',
+            auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASS,
             },
           }
     );
@@ -49,14 +67,15 @@ module.exports = async function handler(req, res) {
     const mailOptions = {
       from: fromAddress,
       to: toAddress,
-      subject: `Portfolio Contact: ${name}`,
+      subject: `Portfolio Contact: ${String(name).replace(/[\r\n]+/g, ' ')}`,
       replyTo: email,
+      text: `From: ${name} <${email}>\n\n${message}`,
       html: `
         <h3>New Contact Form Submission</h3>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${(message || '').replace(/\n/g, '<br/>')}</p>
+        <p>${escapeHtml(message).replace(/\n/g, '<br/>')}</p>
       `,
     };
 
@@ -67,6 +86,4 @@ module.exports = async function handler(req, res) {
     console.error('Error sending email:', error);
     return res.status(500).json({ success: false, message: 'Failed to send email' });
   }
-}
-
-
+};
