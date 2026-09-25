@@ -22,9 +22,17 @@ const idList = (v) => (Array.isArray(v) ? v : []).map((x) => String(x).trim()).f
 function summarize({ slug, text, sha }) {
   try {
     const { data } = frontmatter.parse(text, slug);
-    return { slug, sha, title: data.title || slug, date: data.date || slug.slice(0, 10), draft: data.draft === true };
+    return {
+      slug,
+      sha,
+      title: data.title || slug,
+      date: data.date || slug.slice(0, 10),
+      summary: data.summary || '',
+      tags: [].concat(data.tags || []),
+      draft: data.draft === true,
+    };
   } catch {
-    return { slug, sha, title: slug, date: slug.slice(0, 10), draft: false, broken: true };
+    return { slug, sha, title: slug, date: slug.slice(0, 10), summary: '', tags: [], draft: false, broken: true };
   }
 }
 

@@ -100,8 +100,25 @@ function githubStore({ token, repo, branch, fetch = globalThis.fetch }) {
 
   return {
     kind: 'github',
-    // One GraphQL call returns every post's text instead of one request per file.
+    // One GraphQL call returns every post's text instead of one request per
+    // file; falls back to the REST API if GraphQL is unavailable to the token.
     async list() {
+      try {
+        return await this.listGraphql();
+      } catch (err) {
+        console.warn('GraphQL list failed, using REST:', err.message);
+        let files;
+        try {
+          files = await api('GET', `/repos/${owner}/${name}/contents/${POSTS_PATH}?ref=${encodeURIComponent(branch)}`);
+        } catch (e) {
+          if (e instanceof NotFoundError) return [];
+          throw e;
+        }
+        const posts = files.filter((f) => f.type === 'file' && f.name.endsWith('.md'));
+        return Promise.all(posts.map((f) => this.get(f.name.slice(0, -3))));
+      }
+    },
+    async listGraphql() {
       const data = await api('POST', '/graphql', {
         query: `query($owner: String!, $name: String!, $expr: String!) {
           repository(owner: $owner, name: $name) {

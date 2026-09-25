@@ -103,22 +103,43 @@
 
   async function refreshList() {
     meta = await api('GET', '/api/posts');
-    list.innerHTML = meta.posts.length
-      ? meta.posts
-          .map(
-            (p) => `<li><button type="button" data-slug="${escapeHtml(p.slug)}"${p.slug === current.slug ? ' aria-current="true"' : ''}>
-              <span class="mono muted">${escapeHtml(p.date)}</span>
-              <span>${escapeHtml(p.title)}</span>
-              ${p.draft ? '<span class="status status-shipped">Draft</span>' : ''}
-            </button></li>`
-          )
-          .join('')
-      : '<li class="muted">No posts yet.</li>';
+    $('post-count').textContent = meta.posts.length ? `(${meta.posts.length})` : '';
+    $('post-search').hidden = meta.posts.length < 2;
+    renderList();
   }
 
+  function renderList() {
+    const q = $('post-search').value.trim().toLowerCase();
+    const posts = meta.posts.filter((p) => !q || [p.title, p.summary, ...p.tags].join(' ').toLowerCase().includes(q));
+    list.innerHTML = posts.length
+      ? posts
+          .map(
+            (p) => `<li class="admin-post${p.slug === current.slug ? ' current' : ''}" data-slug="${escapeHtml(p.slug)}">
+              <div class="admin-post-meta">
+                <span class="mono muted">${escapeHtml(p.date)}</span>
+                <span class="status ${p.draft ? 'status-shipped' : 'status-active'}">${p.draft ? 'Draft' : 'Published'}</span>
+              </div>
+              <strong>${escapeHtml(p.title)}</strong>
+              ${p.summary ? `<span class="muted admin-post-summary">${escapeHtml(p.summary)}</span>` : ''}
+              ${p.tags.length ? `<div class="chip-row">${p.tags.map((t) => `<span class="chip chip-tag">#${escapeHtml(t)}</span>`).join('')}</div>` : ''}
+              <div class="admin-post-actions">
+                <button type="button" class="btn btn-small" data-edit="${escapeHtml(p.slug)}">Edit</button>
+                ${p.draft ? '' : `<a class="btn btn-small" href="../blog/${encodeURIComponent(p.slug)}/" target="_blank" rel="noopener">View ↗</a>`}
+              </div>
+            </li>`
+          )
+          .join('')
+      : `<li class="muted admin-empty">${q ? 'No posts match.' : 'No posts yet. Click “Today’s post” to write your first one.'}</li>`;
+  }
+
+  $('post-search').addEventListener('input', renderList);
+
   list.addEventListener('click', (e) => {
-    const btn = e.target.closest('button[data-slug]');
-    if (btn && confirmDiscard()) openPost(btn.dataset.slug);
+    const btn = e.target.closest('[data-edit]');
+    if (btn && confirmDiscard()) {
+      openPost(btn.dataset.edit);
+      editor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 
   function renderPicks() {
@@ -144,11 +165,11 @@
     f.body.value = fields.body;
     for (const box of editor.querySelectorAll('input[name=projects]')) box.checked = fields.projects.includes(box.value);
     for (const box of editor.querySelectorAll('input[name=certs]')) box.checked = fields.certs.includes(box.value);
-    $('editor-slug').textContent = slug ? `blog/${slug}/` : 'New post';
+    $('editor-slug').textContent = slug ? `Editing: blog/${slug}/` : 'New post';
     $('editor-state').hidden = !(slug && fields.draft);
     $('delete-btn').hidden = !slug;
     f.date.disabled = !!slug; // the date is part of the URL once saved
-    for (const b of list.querySelectorAll('button[data-slug]')) b.toggleAttribute('aria-current', b.dataset.slug === slug);
+    for (const li of list.querySelectorAll('li[data-slug]')) li.classList.toggle('current', li.dataset.slug === slug);
     showTab('write');
     savedSnapshot = snapshot();
     setStatus(status, '');

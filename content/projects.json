@@ -123,7 +123,7 @@
     "year": "2026",
     "status": "active",
     "featured": false,
-    "summary": "Static portfolio and daily log generated from Markdown by a small Node build script, deployed on GitHub Pages and Vercel.",
+    "summary": "Static portfolio and daily blog generated from Markdown by a small Node build script, deployed on GitHub Pages and Vercel.",
     "stack": ["Node.js", "Marked", "HTML / CSS"],
     "repo": "https://github.com/Jazzboy2567/portfolio-website"
   },
