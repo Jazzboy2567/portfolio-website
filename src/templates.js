@@ -41,7 +41,7 @@ function layout({ site, root, active, title, description, canonical, body, hasCe
   const nav = [
     ['projects', `${root}#projects`, 'Projects'],
     ...(hasCerts ? [['certifications', `${root}#certifications`, 'Certifications']] : []),
-    ['log', `${root}blog/`, 'Log'],
+    ['log', `${root}blog/`, 'Blog'],
     ['about', `${root}#about`, 'About'],
     ['contact', `${root}#contact`, 'Contact'],
   ];
@@ -57,7 +57,7 @@ function layout({ site, root, active, title, description, canonical, body, hasCe
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="website">
   ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ''}
-  <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}: Log" href="${root}blog/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}: Blog" href="${root}blog/feed.xml">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234f9cff'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%230e1117'%3Emn%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +125,7 @@ function postChips(post, root) {
 function activityGrid(activity, root) {
   const cells = activity.days
     .map((d) => {
-      const label = d.count ? `${plural(d.count, 'entry', 'entries')} on ${fmtDate(d.date)}` : `No entries on ${fmtDate(d.date)}`;
+      const label = d.count ? `${plural(d.count, 'post')} on ${fmtDate(d.date)}` : `No posts on ${fmtDate(d.date)}`;
       const lvl = Math.min(d.count, 3);
       return d.count
         ? `<a class="cell l${lvl}" href="${root}blog/${d.slug}/" title="${label}" aria-label="${label}"></a>`
@@ -135,8 +135,8 @@ function activityGrid(activity, root) {
   return `<div class="activity">
           <div class="activity-grid" style="--weeks:${activity.weeks}">${cells}</div>
           <dl class="activity-stats">
-            <div><dt>Entries</dt><dd>${activity.total}</dd></div>
-            <div><dt>Days logged</dt><dd>${activity.daysLogged}</dd></div>
+            <div><dt>Posts</dt><dd>${activity.total}</dd></div>
+            <div><dt>Days posted</dt><dd>${activity.daysLogged}</dd></div>
             <div><dt>Longest streak</dt><dd>${plural(activity.longestStreak, 'day')}</dd></div>
           </dl>
         </div>`;
@@ -149,7 +149,7 @@ function projectCard(p, root) {
     ? `<a class="card-link" href="${esc(p.repo)}" target="_blank" rel="noopener">${icon.github}<span>Source</span></a>`
     : `<span class="card-link muted" title="Source is private">${icon.lock}<span>Private repo</span></span>`;
   const logs = p.postCount
-    ? `<a class="card-link" href="${root}blog/?project=${p.id}">${plural(p.postCount, 'log entry', 'log entries')} ${icon.arrow}</a>`
+    ? `<a class="card-link" href="${root}blog/?project=${p.id}">${plural(p.postCount, 'blog post')} ${icon.arrow}</a>`
     : '';
   return `<article class="card project" id="project-${p.id}">
             <header class="card-head">
@@ -174,7 +174,7 @@ function certCard(c, root) {
             ${c.skills?.length ? `<div class="chip-row">${chips(c.skills)}</div>` : ''}
             <footer class="card-foot">
               ${c.url ? `<a class="card-link" href="${esc(c.url)}" target="_blank" rel="noopener">Verify credential ${icon.arrow}</a>` : ''}
-              ${c.postCount ? `<a class="card-link" href="${root}blog/?cert=${c.id}">${plural(c.postCount, 'log entry', 'log entries')} ${icon.arrow}</a>` : ''}
+              ${c.postCount ? `<a class="card-link" href="${root}blog/?cert=${c.id}">${plural(c.postCount, 'blog post')} ${icon.arrow}</a>` : ''}
             </footer>
           </article>`;
 }
@@ -195,7 +195,7 @@ function homePage({ site, projects, certs, posts }) {
         <p class="hero-tagline">${esc(site.tagline)}</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#projects">See projects</a>
-          <a class="btn" href="blog/">Read the log</a>
+          <a class="btn" href="blog/">Read the blog</a>
           <span class="hero-icons">
             <a class="icon-btn" href="${esc(site.links.github)}" target="_blank" rel="me noopener" aria-label="GitHub">${icon.github}</a>
             <a class="icon-btn" href="${esc(site.links.linkedin)}" target="_blank" rel="me noopener" aria-label="LinkedIn">${icon.linkedin}</a>
@@ -209,7 +209,7 @@ function homePage({ site, projects, certs, posts }) {
           <ul class="now-list">
             ${building.map((p) => `<li><a href="#project-${p.id}"><span class="pulse" aria-hidden="true"></span>${esc(p.name)}</a><span class="muted">${esc(p.stack.slice(0, 2).join(' · '))}</span></li>`).join('\n            ')}
           </ul>
-          ${latest.length ? `<h2 class="panel-label">Latest from the log</h2>
+          ${latest.length ? `<h2 class="panel-label">Latest from the blog</h2>
           <ul class="now-log">
             ${latest.map((p) => `<li><time class="mono" datetime="${p.date}">${fmtDate(p.date)}</time><a href="blog/${p.slug}/">${esc(p.title)}</a></li>`).join('\n            ')}
           </ul>` : ''}
@@ -250,15 +250,15 @@ function homePage({ site, projects, certs, posts }) {
 
     <section id="log" class="section container">
       <div class="section-head">
-        <h2>From the log</h2>
+        <h2>From the blog</h2>
         <p>Short daily notes on what I'm building, fixing and learning.</p>
       </div>
       ${latest.length
         ? `<ul class="log-list">
         ${latest.map((p) => postRow(p, root)).join('\n        ')}
       </ul>
-      <a class="more-link" href="blog/">All log entries ${icon.arrow}</a>`
-        : `<p class="muted">No entries yet.</p>`}
+      <a class="more-link" href="blog/">All blog posts ${icon.arrow}</a>`
+        : `<p class="muted">No posts yet.</p>`}
     </section>
 
     <section id="about" class="section container">
@@ -339,35 +339,35 @@ function blogIndexPage({ site, posts, projects, certs, activity }) {
 
   const body = `
     <section class="section container page-head">
-      <p class="eyebrow mono"><span class="prompt">$</span> tail -f log</p>
-      <h1>Log</h1>
+      <p class="eyebrow mono"><span class="prompt">$</span> ls ~/blog</p>
+      <h1>Blog</h1>
       <p class="lede">A running record of what I work on each day: projects, bugs, things I learned and certifications in progress.</p>
       ${posts.length ? activityGrid(activity, root) : ''}
     </section>
 
     <section class="section container log-section">
       ${posts.length ? `<div class="log-filters" id="log-filters">
-        <input type="search" id="log-search" class="search" placeholder="Search entries…" aria-label="Search entries">
+        <input type="search" id="log-search" class="search" placeholder="Search posts…" aria-label="Search posts">
         <div class="chip-row">
           ${usedProjects.map((p) => filterChip('project', p.id, esc(p.name))).join('')}
           ${usedCerts.map((c) => filterChip('cert', c.id, esc(c.name))).join('')}
           ${tags.map((t) => filterChip('tag', t, `#${esc(t)}`)).join('')}
         </div>
       </div>
-      <p class="log-empty muted" id="log-empty" hidden>No entries match that filter.</p>
+      <p class="log-empty muted" id="log-empty" hidden>No posts match that filter.</p>
       ${[...byMonth].map(([month, list]) => `<div class="log-month">
         <h2 class="month-label mono">${fmtMonth(month)}</h2>
         <ul class="log-list">
         ${list.map((p) => postRow(p, root)).join('\n        ')}
         </ul>
-      </div>`).join('\n      ')}` : `<p class="muted">No entries yet. The first one is coming soon.</p>`}
+      </div>`).join('\n      ')}` : `<p class="muted">No posts yet. The first one is coming soon.</p>`}
     </section>`;
 
   return layout({
     site,
     root,
     active: 'log',
-    title: `Log · ${site.name}`,
+    title: `Blog · ${site.name}`,
     description: `Daily notes from ${site.name} on projects, learning and certifications.`,
     canonical: site.url + 'blog/',
     body,
@@ -381,7 +381,7 @@ function postPage({ site, post, prev, next, certs }) {
   const root = '../../';
   const body = `
     <article class="section container post">
-      <a class="back-link mono" href="../">← Log</a>
+      <a class="back-link mono" href="../">← Blog</a>
       <header class="post-head">
         <h1>${esc(post.title)}</h1>
         <p class="post-meta mono"><time datetime="${post.date}">${fmtDate(post.date)}</time> <span class="dot-sep">·</span> ${post.readingTime} min read</p>
@@ -397,7 +397,7 @@ ${post.html}
           <span class="muted">${esc(p.summary)}</span>
         </a>`).join('\n        ')}
       </aside>` : ''}
-      <nav class="post-nav" aria-label="More entries">
+      <nav class="post-nav" aria-label="More posts">
         ${prev ? `<a href="../${prev.slug}/"><span class="mono muted">← Older</span>${esc(prev.title)}</a>` : '<span></span>'}
         ${next ? `<a class="next" href="../${next.slug}/"><span class="mono muted">Newer →</span>${esc(next.title)}</a>` : '<span></span>'}
       </nav>
@@ -408,7 +408,7 @@ ${post.html}
     root,
     active: 'log',
     title: `${post.title} · ${site.name}`,
-    description: post.summary || `Log entry from ${fmtDate(post.date)}.`,
+    description: post.summary || `Blog post from ${fmtDate(post.date)}.`,
     canonical: `${site.url}blog/${post.slug}/`,
     body,
     hasCerts: certs.length > 0,
@@ -437,9 +437,9 @@ function adminPage({ site, hasCerts }) {
 
       <div class="admin-app" id="admin-app" hidden>
         <aside class="admin-side">
-          <button class="btn btn-primary" type="button" id="today-btn">Today's entry</button>
-          <button class="btn" type="button" id="new-btn">New entry</button>
-          <h2 class="panel-label">Entries</h2>
+          <button class="btn btn-primary" type="button" id="today-btn">Today's post</button>
+          <button class="btn" type="button" id="new-btn">New post</button>
+          <h2 class="panel-label">Posts</h2>
           <ul class="admin-posts" id="post-list"></ul>
           <button class="btn admin-logout" type="button" id="logout-btn">Log out</button>
         </aside>
@@ -447,14 +447,14 @@ function adminPage({ site, hasCerts }) {
         <form class="panel admin-editor" id="editor" autocomplete="off">
           <div class="panel-body">
             <div class="editor-head">
-              <span class="mono muted" id="editor-slug">New entry</span>
+              <span class="mono muted" id="editor-slug">New post</span>
               <span class="status status-active" id="editor-state" hidden>Draft</span>
             </div>
             <div class="editor-row">
               <label class="grow">Title<input name="title" required maxlength="200"></label>
               <label>Date<input name="date" type="date" required></label>
             </div>
-            <label><span>Summary <span class="muted">(one line for the log list and RSS)</span></span><input name="summary" maxlength="300"></label>
+            <label><span>Summary <span class="muted">(one line for the blog list and RSS)</span></span><input name="summary" maxlength="300"></label>
             <label><span>Tags <span class="muted">(comma separated)</span></span><input name="tags" placeholder="python, bugfix"></label>
             <fieldset><legend>Projects</legend><div class="chip-row" id="project-picks"></div></fieldset>
             <fieldset id="cert-fieldset"><legend>Certifications</legend><div class="chip-row" id="cert-picks"></div></fieldset>
@@ -480,7 +480,7 @@ function adminPage({ site, hasCerts }) {
     root,
     active: null,
     title: `Admin · ${site.name}`,
-    description: 'Log editor',
+    description: 'Blog editor',
     body,
     hasCerts,
     head: '<meta name="robots" content="noindex, nofollow">',
@@ -508,7 +508,7 @@ function feed({ site, posts }) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>${x(site.name)}: Log</title>
+  <title>${x(site.name)}: Blog</title>
   <link>${x(site.url)}blog/</link>
   <description>Daily notes on projects, learning and certifications.</description>
 ${items}

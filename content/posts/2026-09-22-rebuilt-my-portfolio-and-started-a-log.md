@@ -1,7 +1,7 @@
 ---
-title: Rebuilt my portfolio and started this log
+title: Rebuilt my portfolio and started this blog
 date: 2026-09-22
-summary: The old site still led with 2023 coursework, so I rebuilt it around what I'm building now and added a daily log.
+summary: The old site still led with 2023 coursework, so I rebuilt it around what I'm building now and added a daily blog.
 tags: [web, javascript, meta]
 projects: [portfolio]
 certs: []
@@ -20,14 +20,14 @@ actually build, so I redid it.
   anyone who wants it.
 - **Projects reflect the present.** Current work is up front. Coursework moved to
   an "Earlier work" list instead of disappearing.
-- **This log.** Each entry is a Markdown file in `content/posts/`. A roughly
+- **This blog.** Each post is a Markdown file in `content/posts/`. A roughly
   200-line Node script turns them into static pages, so it still deploys to
   GitHub Pages with no framework and no server.
-- **Entries link to projects and certifications.** Tagging an entry with a
+- **Posts link to projects and certifications.** Tagging a post with a
   project adds it to that project's history, so every project card links to the
   days I spent on it.
 
-## Writing an entry
+## Writing a post
 
 ```bash
 npm run post -- "Fixed the EventScout map filter"
@@ -37,5 +37,5 @@ npm run build
 
 ## Next up
 
-- Write an entry at the end of each working day, even a short one
+- Write a post at the end of each working day, even a short one
 - Add certifications as I start them

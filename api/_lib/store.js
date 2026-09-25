@@ -121,7 +121,7 @@ function githubStore({ token, repo, branch, fetch = globalThis.fetch }) {
     },
     async put(slug, text, sha) {
       const data = await api('PUT', contentsUrl(slug), {
-        message: `log: ${sha ? 'update' : 'add'} ${slug}`,
+        message: `blog: ${sha ? 'update' : 'add'} ${slug}`,
         content: Buffer.from(text, 'utf8').toString('base64'),
         branch,
         ...(sha ? { sha } : {}),
@@ -129,7 +129,7 @@ function githubStore({ token, repo, branch, fetch = globalThis.fetch }) {
       return { sha: data.content.sha };
     },
     async remove(slug, sha) {
-      await api('DELETE', contentsUrl(slug), { message: `log: delete ${slug}`, sha, branch });
+      await api('DELETE', contentsUrl(slug), { message: `blog: delete ${slug}`, sha, branch });
     },
   };
 }

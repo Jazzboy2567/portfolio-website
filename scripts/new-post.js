@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Creates today's log entry: npm run post -- "What I worked on"
+// Creates today's blog post: npm run post -- "What I worked on"
 
 const fs = require('fs');
 const path = require('path');
 
 const CONTENT = path.join(__dirname, '..', 'content');
-const title = process.argv.slice(2).join(' ').trim() || 'Daily log';
+const title = process.argv.slice(2).join(' ').trim() || 'Daily update';
 
 const now = new Date();
 const pad = (n) => String(n).padStart(2, '0');
@@ -17,7 +17,7 @@ const slug = title
   .replace(/^-+|-+$/g, '')
   .slice(0, 60);
 
-const base = path.join(CONTENT, 'posts', `${date}-${slug || 'log'}`);
+const base = path.join(CONTENT, 'posts', `${date}-${slug || 'post'}`);
 let file = `${base}.md`;
 for (let n = 2; fs.existsSync(file); n++) file = `${base}-${n}.md`;
 
@@ -29,13 +29,13 @@ fs.writeFileSync(
   `---
 title: ${title}
 date: ${date}
-summary: One sentence for the log list and RSS feed.
+summary: One sentence for the blog list and RSS feed.
 tags: []
 # project ids: ${ids('projects.json')}
 projects: []
 # cert ids: ${ids('certifications.json')}
 certs: []
-# draft: true keeps this entry out of the build
+# draft: true keeps this post out of the build
 draft: false
 ---
 
