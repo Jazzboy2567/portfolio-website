@@ -5,11 +5,12 @@
   "location": "Issaquah, WA",
   "url": "https://jazzboy2567.github.io/portfolio-website/",
   "contactEndpoint": "https://matthew-nielsen.vercel.app/api/contact",
-  "tagline": "I build tools that do the tedious parts for you: browser automation agents, data scrapers, analytics dashboards and local-first desktop apps.",
+  "tagline": "I build tools and apps that handle the tedious parts for you: browser automation, scrapers, local-first desktop apps, and lately Android apps and games.",
   "about": [
-    "I'm a Computer Science graduate from the Colorado School of Mines (Robotics & Intelligent Systems) who builds tools I actually use. Most of my projects start with a chore I'd rather a program handle, like finding local events, tracking which League items win games or drafting cover letters. I keep going until the tool works end to end.",
-    "Lately that means Python and Node.js with Playwright or Puppeteer for the web, Electron for desktop apps, FastAPI/Flask/Express for backends, and SQLite or scikit-learn when the data needs to go somewhere. I care about privacy by default: most of what I build runs locally, needs no account and keeps your data on your machine.",
-    "I write a short blog post about what I work on each day, so you can see how the projects actually come together."
+    "I'm a software engineer and Colorado School of Mines computer science graduate (Robotics & Intelligent Systems). I build things I actually want to use, and I keep at them until they work end to end.",
+    "Most of that work is on my GitHub: Pilot, a Python agent that drives a real browser with Playwright and records successful runs so it can replay them without calling a model; LinkWatch, an Electron app that watches pages for new links on a schedule; SacredSafe, an offline password manager with AES-256 encryption; Weekly Schedule, a native Android planner built with Kotlin and Jetpack Compose; and Protect Your Plot, a lane-defense game I'm building in Godot for Android.",
+    "Across all of it I lean toward local-first software: tools that run on your own machine, need no account and keep your data with you. My coursework is up there too, from a Java Clue game with computer players to route-finding search algorithms in Python.",
+    "I write a short blog post about what I work on each day, so you can see how the projects come together."
   ],
   "links": {
     "github": "https://github.com/Jazzboy2567",
@@ -24,6 +25,7 @@
         "Java",
         "C++",
         "SQL",
+        "Kotlin",
         "GDScript",
         "Lua",
         "C"
@@ -34,7 +36,6 @@
       "items": [
         "Express",
         "FastAPI",
-        "Flask",
         "REST APIs",
         "HTML / CSS",
         "Jinja",
@@ -47,17 +48,17 @@
         "Playwright",
         "Puppeteer",
         "Cheerio",
-        "schema.org / JSON-LD",
         "pandas",
         "NumPy",
-        "scikit-learn",
-        "SQLite"
+        "scikit-learn"
       ]
     },
     {
       "group": "Apps & tooling",
       "items": [
         "Electron",
+        "Jetpack Compose",
+        "Android",
         "Godot 4",
         "Docker",
         "Git / GitHub",
