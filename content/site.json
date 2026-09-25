@@ -9,7 +9,7 @@
   "about": [
     "I'm a Computer Science graduate from the Colorado School of Mines (Robotics & Intelligent Systems) who builds tools I actually use. Most of my projects start with a chore I'd rather a program handle, like finding local events, tracking which League items win games or drafting cover letters. I keep going until the tool works end to end.",
     "Lately that means Python and Node.js with Playwright or Puppeteer for the web, Electron for desktop apps, FastAPI/Flask/Express for backends, and SQLite or scikit-learn when the data needs to go somewhere. I care about privacy by default: most of what I build runs locally, needs no account and keeps your data on your machine.",
-    "I write a short log of what I work on each day, so you can see how the projects actually come together."
+    "I write a short blog post about what I work on each day, so you can see how the projects actually come together."
   ],
   "links": {
     "github": "https://github.com/Jazzboy2567",

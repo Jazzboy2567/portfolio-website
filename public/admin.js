@@ -1,4 +1,4 @@
-// Log editor: log in, then write or edit entries. Saving goes through
+// Blog editor: log in, then write or edit posts. Saving goes through
 // /api/posts, which commits the Markdown file to the repo; the site rebuilds
 // from there.
 (function () {
@@ -113,7 +113,7 @@
             </button></li>`
           )
           .join('')
-      : '<li class="muted">No entries yet.</li>';
+      : '<li class="muted">No posts yet.</li>';
   }
 
   list.addEventListener('click', (e) => {
@@ -144,7 +144,7 @@
     f.body.value = fields.body;
     for (const box of editor.querySelectorAll('input[name=projects]')) box.checked = fields.projects.includes(box.value);
     for (const box of editor.querySelectorAll('input[name=certs]')) box.checked = fields.certs.includes(box.value);
-    $('editor-slug').textContent = slug ? `blog/${slug}/` : 'New entry';
+    $('editor-slug').textContent = slug ? `blog/${slug}/` : 'New post';
     $('editor-state').hidden = !(slug && fields.draft);
     $('delete-btn').hidden = !slug;
     f.date.disabled = !!slug; // the date is part of the URL once saved

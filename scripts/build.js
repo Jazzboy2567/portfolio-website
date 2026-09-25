@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Generates the static site in dist/ from content/ and public/:
-//   index.html               home page (projects, certifications, latest log entries)
-//   blog/index.html          the log, with filters and an activity grid
+//   index.html               home page (projects, certifications, latest blog posts)
+//   blog/index.html          the blog, with filters and an activity grid
 //   blog/<slug>/index.html   one page per post
 //   blog/feed.xml            RSS
 //   admin/index.html         the in-browser post editor (needs the Vercel API)
@@ -85,7 +85,7 @@ function buildActivity(posts, today = new Date()) {
   for (let t = start; t <= end; t += dayMs) {
     const date = iso(t);
     const list = byDay.get(date) || [];
-    // posts are newest-first, so the last one is the day's first entry
+    // posts are newest-first, so the last one is the day's first post
     days.push({ date, count: list.length, slug: list.length ? list[list.length - 1].slug : null });
   }
 
@@ -133,7 +133,7 @@ function build() {
   write('blog/feed.xml', t.feed({ site, posts }));
   write('admin/index.html', t.adminPage({ site, hasCerts: certs.length > 0 }));
 
-  console.log(`Built home + ${posts.length} log ${posts.length === 1 ? 'entry' : 'entries'}.`);
+  console.log(`Built home + ${posts.length} blog ${posts.length === 1 ? 'post' : 'posts'}.`);
 }
 
 function watch() {

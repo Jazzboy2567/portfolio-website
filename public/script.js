@@ -68,7 +68,7 @@ if (form) {
 const grid = document.querySelector('.activity-grid');
 if (grid) grid.scrollLeft = grid.scrollWidth;
 
-// Log filters: ?project=, ?cert=, ?tag= and free-text search
+// Blog filters: ?project=, ?cert=, ?tag= and free-text search
 const filters = document.getElementById('log-filters');
 if (filters) {
   const rows = [...document.querySelectorAll('.log-row')];

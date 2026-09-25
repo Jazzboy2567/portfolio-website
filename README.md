@@ -1,28 +1,28 @@
-# Portfolio & Log
+# Portfolio & Blog
 
 **[Live site](https://jazzboy2567.github.io/portfolio-website/)** · [Vercel mirror](https://portfolio-website-zeta-ruddy.vercel.app)
 
-My portfolio and a daily log of what I'm building. It's a static site generated
+My portfolio and a daily blog about what I'm building. It's a static site generated
 from Markdown and JSON by a small Node script, with no framework. There's a
-password-protected editor at `/admin/` for writing and editing entries in the
+password-protected editor at `/admin/` for writing and editing posts in the
 browser.
 
-## Writing a log entry
+## Writing a blog post
 
 1. Go to **https://portfolio-website-zeta-ruddy.vercel.app/admin/** and log in.
    The GitHub Pages copy redirects there, because the editor needs Vercel's API.
-2. **Today's entry** opens today's post, or starts one if there isn't one yet.
-   Any past entry can be opened from the list and edited.
+2. **Today's post** opens today's post, or starts one if there isn't one yet.
+   Any past post can be opened from the list and edited.
 3. **Publish** or **Save as draft** (drafts stay off the site). Ctrl/Cmd+S saves.
 
 Saving commits `content/posts/<date>-<title>.md` to this repo. Vercel and the
 GitHub Pages workflow rebuild automatically, so it's live in about a minute.
-Once saved, an entry keeps its URL even if you change its title.
+Once saved, a post keeps its URL even if you change its title.
 
 > Drafts are hidden from the site but, since this repo is public, their
 > Markdown is visible on GitHub.
 
-You can still write entries by hand: `npm run post -- "Title"` creates the file,
+You can still write posts by hand: `npm run post -- "Title"` creates the file,
 then commit and push.
 
 ## One-time setup
@@ -76,7 +76,7 @@ A certification looks like this:
 
 Use `"status": "in-progress"` and leave `date`/`url` empty while you're working
 toward one. Once it's in the file, it shows up as a checkbox in the editor so
-you can tag log entries with your progress.
+you can tag blog posts with your progress.
 
 ## Local development
 

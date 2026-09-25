@@ -14,7 +14,7 @@ const slugify = (s) =>
     .replace(/['’]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
-    .slice(0, 60) || 'log';
+    .slice(0, 60) || 'post';
 
 const oneLine = (s, max) => String(s ?? '').replace(/[\r\n]+/g, ' ').trim().slice(0, max);
 const idList = (v) => (Array.isArray(v) ? v : []).map((x) => String(x).trim()).filter(Boolean);
