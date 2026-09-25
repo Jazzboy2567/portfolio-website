@@ -11,68 +11,14 @@
       "Records the first successful run as a recipe that replays deterministically with zero model calls",
       "Pauses risky actions for approval and never handles passwords; supports local LLMs via Ollama"
     ],
-    "stack": ["Python", "Playwright", "FastAPI", "scikit-learn", "Ollama"],
+    "stack": [
+      "Python",
+      "Playwright",
+      "FastAPI",
+      "scikit-learn",
+      "Ollama"
+    ],
     "repo": "https://github.com/Jazzboy2567/Computer-Automation"
-  },
-  {
-    "id": "eventscout",
-    "name": "EventScout",
-    "year": "2026",
-    "status": "active",
-    "featured": true,
-    "summary": "Finds local events and jobs in your city from public, structured sources and puts them on one searchable page, with no API keys needed.",
-    "highlights": [
-      "Aggregates ten event sites plus six job APIs, built on schema.org JSON-LD and open APIs only",
-      "Filters by category, date, price, age and distance from an address, shown as a list or a map",
-      "Client-side résumé matching for jobs; optional account sync; ships as an Electron app"
-    ],
-    "stack": ["Node.js", "Puppeteer", "Cheerio", "Electron", "Docker"],
-    "repo": null
-  },
-  {
-    "id": "leaguegraph",
-    "name": "LeagueGraph",
-    "year": "2026",
-    "status": "active",
-    "featured": true,
-    "summary": "A personal League of Legends analytics dashboard that pulls your full match history from the Riot API and answers questions the official client can't.",
-    "highlights": [
-      "Item win rates vs. your baseline, answering which items actually help you win",
-      "Win % when ahead or behind your lane opponent in gold, CS and XP at 10, 15, 20 and 25 minutes",
-      "Incremental sync and caching in SQLite, so reopening is instant"
-    ],
-    "stack": ["Python", "Flask", "SQLite", "Riot API", "JavaScript"],
-    "repo": null
-  },
-  {
-    "id": "accountfinder",
-    "name": "AccountFinder",
-    "year": "2026",
-    "status": "active",
-    "featured": true,
-    "summary": "An OSINT correlation tool. From one username, URL or email it finds public accounts across platforms and cross-checks which ones really belong to the same person.",
-    "highlights": [
-      "Pipeline: handle permutation → presence detection → profile extraction → correlation",
-      "Ranks matches by confidence with reasons (shared avatar hash, rel=me links, matching names)",
-      "Flags likely false matches and weak leads instead of hiding them"
-    ],
-    "stack": ["Node.js", "Electron", "Cheerio"],
-    "repo": null
-  },
-  {
-    "id": "cover-letter-tailor",
-    "name": "Cover Letter Tailor",
-    "year": "2026",
-    "status": "active",
-    "featured": true,
-    "summary": "Offline cover-letter drafting. Give it your résumé and a job posting, and it drafts a tailored letter, marks the parts only you can write and gives you a checklist.",
-    "highlights": [
-      "No API key, account or cloud: your résumé never leaves your machine",
-      "Parses PDF and DOCX résumés and exports to DOCX",
-      "Designed to sound like you, not like AI"
-    ],
-    "stack": ["Node.js", "Express", "Zod", "pdf-parse", "docx"],
-    "repo": null
   },
   {
     "id": "sacredsafe",
@@ -86,7 +32,11 @@
       "Per-user encrypted vaults with autosave",
       "Cryptographically random password and username generators"
     ],
-    "stack": ["Electron", "JavaScript", "Node crypto"],
+    "stack": [
+      "Electron",
+      "JavaScript",
+      "Node crypto"
+    ],
     "repo": "https://github.com/Jazzboy2567/SacredSafe"
   },
   {
@@ -100,8 +50,31 @@
       "Built in Godot 4 with GDScript",
       "Squad-command unit control on top of lane-defense waves"
     ],
-    "stack": ["Godot 4", "GDScript"],
+    "stack": [
+      "Godot 4",
+      "GDScript"
+    ],
     "repo": "https://github.com/Jazzboy2567/protect-your-plot"
+  },
+  {
+    "id": "weekly-schedule",
+    "name": "Weekly Schedule",
+    "year": "2026",
+    "status": "active",
+    "featured": true,
+    "summary": "A native Android weekly planner. Lay out your week in time blocks, and a persistent notification always shows what you should be doing right now.",
+    "highlights": [
+      "Google Calendar-style week grid: drag across days to create the same block on several days at once",
+      "Two notification modes: a locked, un-swipeable notification, or reminders on a chosen interval",
+      "Alarms re-arm after reboots, updates and time-zone changes; unit-tested scheduling logic"
+    ],
+    "stack": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Room",
+      "Android"
+    ],
+    "repo": "https://github.com/Jazzboy2567/WeeklySchedule"
   },
   {
     "id": "linkwatch",
@@ -114,7 +87,11 @@
       "Per-source schedules with active hours and keyword title filters",
       "Test runs preview results without touching saved history"
     ],
-    "stack": ["Electron", "Puppeteer", "Cheerio"],
+    "stack": [
+      "Electron",
+      "Puppeteer",
+      "Cheerio"
+    ],
     "repo": "https://github.com/Jazzboy2567/HyperlinkScraperApp"
   },
   {
@@ -124,7 +101,11 @@
     "status": "active",
     "featured": false,
     "summary": "Static portfolio and daily blog generated from Markdown by a small Node build script, deployed on GitHub Pages and Vercel.",
-    "stack": ["Node.js", "Marked", "HTML / CSS"],
+    "stack": [
+      "Node.js",
+      "Marked",
+      "HTML / CSS"
+    ],
     "repo": "https://github.com/Jazzboy2567/portfolio-website"
   },
   {
@@ -134,18 +115,12 @@
     "status": "shipped",
     "featured": false,
     "summary": "Streamlit app that maps nearby restaurants with location search and cuisine filters, using OpenStreetMap data.",
-    "stack": ["Python", "Streamlit", "Folium"],
+    "stack": [
+      "Python",
+      "Streamlit",
+      "Folium"
+    ],
     "repo": "https://github.com/Jazzboy2567/Restaurant-Data"
-  },
-  {
-    "id": "news-app",
-    "name": "News App",
-    "year": "2025",
-    "status": "shipped",
-    "featured": false,
-    "summary": "Tkinter desktop reader for the News API with search and article filtering.",
-    "stack": ["Python", "Tkinter"],
-    "repo": null
   },
   {
     "id": "route-finding",
@@ -154,7 +129,9 @@
     "status": "shipped",
     "featured": false,
     "summary": "Pathfinding algorithm implementation and visualization.",
-    "stack": ["Python"],
+    "stack": [
+      "Python"
+    ],
     "repo": "https://github.com/Jazzboy2567/RouteFindingAlgorithm"
   },
   {
@@ -164,7 +141,9 @@
     "status": "shipped",
     "featured": false,
     "summary": "A game with animals categorized in a tree structure, built around tree traversal.",
-    "stack": ["C++"],
+    "stack": [
+      "C++"
+    ],
     "repo": "https://github.com/Jazzboy2567/TreeNodes"
   },
   {
@@ -174,7 +153,10 @@
     "status": "shipped",
     "featured": false,
     "summary": "Java implementation of Clue with a Swing GUI, AI players and JUnit tests (with Levi Sprung).",
-    "stack": ["Java", "JUnit"],
+    "stack": [
+      "Java",
+      "JUnit"
+    ],
     "repo": "https://github.com/Jazzboy2567/ClueGame"
   }
 ]

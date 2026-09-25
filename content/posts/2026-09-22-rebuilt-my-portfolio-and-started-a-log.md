@@ -9,15 +9,14 @@ certs: []
 
 My portfolio hadn't changed since last September. It still led with ClueGame and
 TreeNodes, while most of my time this year has gone into
-[Pilot](../../#project-pilot), [EventScout](../../#project-eventscout) and
-[LeagueGraph](../../#project-leaguegraph). It also looked nothing like the tools I
+[Pilot](../../#project-pilot), [SacredSafe](../../#project-sacredsafe) and
+[LinkWatch](../../#project-linkwatch). It also looked nothing like the tools I
 actually build, so I redid it.
 
 ## What changed
 
 - **One visual language.** The site now uses the same dark, panel-based look as
-  LeagueGraph, AccountFinder and Cover Letter Tailor, with a light mode for
-  anyone who wants it.
+  the tools I build, with a light mode for anyone who wants it.
 - **Projects reflect the present.** Current work is up front. Coursework moved to
   an "Earlier work" list instead of disappearing.
 - **This blog.** Each post is a Markdown file in `content/posts/`. A roughly
@@ -30,8 +29,8 @@ actually build, so I redid it.
 ## Writing a post
 
 ```bash
-npm run post -- "Fixed the EventScout map filter"
-# edit content/posts/<today>-fixed-the-eventscout-map-filter.md
+npm run post -- "Fixed the Pilot recipe replay"
+# edit content/posts/<today>-fixed-the-pilot-recipe-replay.md
 npm run build
 ```
 
