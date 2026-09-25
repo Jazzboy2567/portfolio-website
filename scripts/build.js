@@ -3,7 +3,6 @@
 //   index.html               home page (projects, certifications, latest blog posts)
 //   blog/index.html          the blog, with filters and an activity grid
 //   blog/<slug>/index.html   one page per post
-//   blog/feed.xml            RSS
 //   admin/index.html         the in-browser post editor (needs the Vercel API)
 //   + everything in public/  (styles, scripts)
 //
@@ -130,7 +129,6 @@ function build() {
   posts.forEach((post, i) => {
     write(`blog/${post.slug}/index.html`, t.postPage({ site, post, prev: posts[i + 1], next: posts[i - 1], certs }));
   });
-  write('blog/feed.xml', t.feed({ site, posts }));
   write('admin/index.html', t.adminPage({ site, hasCerts: certs.length > 0 }));
 
   console.log(`Built home + ${posts.length} blog ${posts.length === 1 ? 'post' : 'posts'}.`);

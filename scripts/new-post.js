@@ -29,7 +29,7 @@ fs.writeFileSync(
   `---
 title: ${title}
 date: ${date}
-summary: One sentence for the blog list and RSS feed.
+summary: One sentence shown in the blog list.
 tags: []
 # project ids: ${ids('projects.json')}
 projects: []

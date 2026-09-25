@@ -24,7 +24,6 @@ const fmtMonth = (iso) => {
 const icon = {
   github: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>',
   linkedin: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M0 1.15C0 .52.52 0 1.18 0h13.64C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.18 1.15H1.18C.52 16 0 15.48 0 14.85V1.15zm4.94 12.23V6.17H2.542v7.21h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.01-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01zm4.91 8.2V9.35c0-.21.02-.43.08-.58.17-.43.57-.88 1.23-.88.87 0 1.22.66 1.22 1.63v3.86h2.4V9.25c0-2.22-1.18-3.25-2.76-3.25-1.27 0-1.84.7-2.16 1.19v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.21 0 7.21h2.4z"/></svg>',
-  rss: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M2 2.75A.75.75 0 012.75 2C8.963 2 14 7.037 14 13.25a.75.75 0 01-1.5 0A9.75 9.75 0 002.75 3.5.75.75 0 012 2.75zm0 4.5a.75.75 0 01.75-.75 6.75 6.75 0 016.75 6.75.75.75 0 01-1.5 0C8 10.35 5.65 8 2.75 8A.75.75 0 012 7.25zM3.5 11a1.5 1.5 0 110 3 1.5 1.5 0 010-3z"/></svg>',
   lock: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M4 4a4 4 0 018 0v2h.25c.97 0 1.75.78 1.75 1.75v5.5A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25v-5.5C2 6.78 2.78 6 3.75 6H4V4zm6.5 2V4a2.5 2.5 0 10-5 0v2h5z"/></svg>',
   arrow: '<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8.22 2.97a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06l2.97-2.97H3.75a.75.75 0 010-1.5h7.44L8.22 4.03a.75.75 0 010-1.06z"/></svg>',
   sun: '<svg class="icon-sun" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 12a4 4 0 110-8 4 4 0 010 8zm0-1.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.34 2.34a.75.75 0 011.06 0l1.06 1.06a.75.75 0 01-1.06 1.06L2.34 3.4a.75.75 0 010-1.06zm9.2 9.2a.75.75 0 011.06 0l1.06 1.06a.75.75 0 11-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zM0 8a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H.75A.75.75 0 010 8zm13 0a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 0113 8zM2.34 13.66a.75.75 0 010-1.06l1.06-1.06a.75.75 0 111.06 1.06L3.4 13.66a.75.75 0 01-1.06 0zm9.2-9.2a.75.75 0 010-1.06l1.06-1.06a.75.75 0 111.06 1.06l-1.06 1.06a.75.75 0 01-1.06 0z"/></svg>',
@@ -57,7 +56,6 @@ function layout({ site, root, active, title, description, canonical, body, hasCe
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:type" content="website">
   ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ''}
-  <link rel="alternate" type="application/rss+xml" title="${esc(site.name)}: Blog" href="${root}blog/feed.xml">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234f9cff'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' text-anchor='middle' fill='%230e1117'%3Emn%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,7 +87,6 @@ ${body}
       <span class="footer-links">
         <a href="${esc(site.links.github)}" rel="me noopener" target="_blank">${icon.github}<span>GitHub</span></a>
         <a href="${esc(site.links.linkedin)}" rel="me noopener" target="_blank">${icon.linkedin}<span>LinkedIn</span></a>
-        <a href="${root}blog/feed.xml">${icon.rss}<span>RSS</span></a>
       </span>
     </div>
   </footer>
@@ -455,7 +452,7 @@ function adminPage({ site, hasCerts }) {
               <label class="grow">Title<input name="title" required maxlength="200"></label>
               <label>Date<input name="date" type="date" required></label>
             </div>
-            <label><span>Summary <span class="muted">(one line for the blog list and RSS)</span></span><input name="summary" maxlength="300"></label>
+            <label><span>Summary <span class="muted">(one line shown in the blog list)</span></span><input name="summary" maxlength="300"></label>
             <label><span>Tags <span class="muted">(comma separated)</span></span><input name="tags" placeholder="python, bugfix"></label>
             <fieldset><legend>Projects</legend><div class="chip-row" id="project-picks"></div></fieldset>
             <fieldset id="cert-fieldset"><legend>Certifications</legend><div class="chip-row" id="cert-picks"></div></fieldset>
@@ -490,32 +487,4 @@ function adminPage({ site, hasCerts }) {
   });
 }
 
-// ---------------------------------------------------------------- rss
-
-function feed({ site, posts }) {
-  const x = esc;
-  const items = posts
-    .slice(0, 30)
-    .map(
-      (p) => `  <item>
-    <title>${x(p.title)}</title>
-    <link>${x(site.url)}blog/${p.slug}/</link>
-    <guid>${x(site.url)}blog/${p.slug}/</guid>
-    <pubDate>${new Date(p.date + 'T12:00:00Z').toUTCString()}</pubDate>
-    <description>${x(p.html)}</description>
-  </item>`
-    )
-    .join('\n');
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
-<channel>
-  <title>${x(site.name)}: Blog</title>
-  <link>${x(site.url)}blog/</link>
-  <description>Daily notes on projects, learning and certifications.</description>
-${items}
-</channel>
-</rss>
-`;
-}
-
-module.exports = { homePage, blogIndexPage, postPage, feed, adminPage };
+module.exports = { homePage, blogIndexPage, postPage, adminPage };
