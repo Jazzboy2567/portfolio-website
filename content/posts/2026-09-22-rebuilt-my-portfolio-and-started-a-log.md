@@ -2,9 +2,10 @@
 title: Rebuilt my portfolio and started this blog
 date: 2026-09-22
 summary: The old site still led with 2023 coursework, so I rebuilt it around what I'm building now and added a daily blog.
-tags: [web, javascript, meta]
+tags: [web, javascript]
 projects: [portfolio]
 certs: []
+draft: false
 ---
 
 My portfolio hadn't changed since last September. It still led with ClueGame and
