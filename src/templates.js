@@ -422,7 +422,7 @@ ${post.html}
 function adminPage({ site, hasCerts }) {
   const root = '../';
   const body = `
-    <section class="section container admin" id="admin" data-admin-url="${esc(new URL('admin/', site.contactEndpoint).href)}">
+    <section class="section container admin" id="admin" data-admin-url="${esc(new URL('/admin/', site.contactEndpoint).href)}">
       <p class="admin-msg muted" id="admin-loading">Loading…</p>
 
       <form class="panel admin-login" id="login-form" hidden>

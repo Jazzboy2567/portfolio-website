@@ -1,6 +1,6 @@
 # Portfolio & Blog
 
-**[Live site](https://jazzboy2567.github.io/portfolio-website/)** · [Vercel mirror](https://portfolio-website-zeta-ruddy.vercel.app)
+**[Live site](https://jazzboy2567.github.io/portfolio-website/)** · [Vercel](https://matthew-nielsen.vercel.app) (also hosts the blog editor)
 
 My portfolio and a daily blog about what I'm building. It's a static site generated
 from Markdown and JSON by a small Node script, with no framework. There's a
@@ -9,7 +9,7 @@ browser.
 
 ## Writing a blog post
 
-1. Go to **https://portfolio-website-zeta-ruddy.vercel.app/admin/** and log in.
+1. Go to **https://matthew-nielsen.vercel.app/admin/** and log in.
    The GitHub Pages copy redirects there, because the editor needs Vercel's API.
 2. **Today's post** opens today's post, or starts one if there isn't one yet.
    Any past post can be opened from the list and edited.
