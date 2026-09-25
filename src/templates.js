@@ -439,7 +439,8 @@ function adminPage({ site, hasCerts }) {
         <aside class="admin-side">
           <button class="btn btn-primary" type="button" id="today-btn">Today's post</button>
           <button class="btn" type="button" id="new-btn">New post</button>
-          <h2 class="panel-label">Posts</h2>
+          <h2 class="panel-label">Your posts <span id="post-count"></span></h2>
+          <input type="search" id="post-search" class="search" placeholder="Search your posts…" aria-label="Search your posts" hidden>
           <ul class="admin-posts" id="post-list"></ul>
           <button class="btn admin-logout" type="button" id="logout-btn">Log out</button>
         </aside>
