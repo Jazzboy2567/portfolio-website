@@ -1,13 +1,16 @@
 {
   "name": "portfolio-website",
   "version": "1.0.0",
-  "description": "Portfolio and daily log for Matthew Nielsen",
+  "description": "Portfolio and blog for Matthew Nielsen",
   "main": "server.js",
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "node scripts/build.js --serve",
     "start": "npm run build && node server.js",
-    "post": "node scripts/new-post.js"
+    "post": "node scripts/new-post.js",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "typecheck": "tsc"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
@@ -16,7 +19,11 @@
     "nodemailer": "^10.0.10"
   },
   "devDependencies": {
-    "marked": "^14.1.4"
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "marked": "^14.1.4",
+    "typescript": "^7.0.2"
   },
   "keywords": [
     "portfolio",

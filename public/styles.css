@@ -8,7 +8,7 @@
   --line: #2a3240;
   --text: #e6edf3;
   --muted: #8b97a7;
-  --faint: #6b7385;
+  --faint: #848e9f;
   --accent: #4f9cff;
   --accent-soft: rgba(79, 156, 255, 0.14);
   --on-accent: #0b1220;
@@ -33,13 +33,13 @@
     --line: #d0d7de;
     --text: #1f2328;
     --muted: #57606a;
-    --faint: #6e7781;
-    --accent: #0969da;
+    --faint: #656d76;
+    --accent: #0860c9;
     --accent-soft: rgba(9, 105, 218, 0.1);
     --on-accent: #ffffff;
-    --ok: #1a7f37;
+    --ok: #17732f;
     --ok-soft: rgba(26, 127, 55, 0.1);
-    --gold: #9a6700;
+    --gold: #805600;
     --gold-soft: rgba(154, 103, 0, 0.1);
     --chip: #eef1f4;
     --cell-0: #ebeff3;
@@ -55,13 +55,13 @@
   --line: #d0d7de;
   --text: #1f2328;
   --muted: #57606a;
-  --faint: #6e7781;
-  --accent: #0969da;
+  --faint: #656d76;
+  --accent: #0860c9;
   --accent-soft: rgba(9, 105, 218, 0.1);
   --on-accent: #ffffff;
-  --ok: #1a7f37;
+  --ok: #17732f;
   --ok-soft: rgba(26, 127, 55, 0.1);
-  --gold: #9a6700;
+  --gold: #805600;
   --gold-soft: rgba(154, 103, 0, 0.1);
   --chip: #eef1f4;
   --cell-0: #ebeff3;
@@ -825,6 +825,11 @@ a.cell:hover {
 }
 .prose li + li {
   margin-top: 0.3em;
+}
+/* Underline links in post text so they stand out without relying on color */
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .prose code {
   font-family: var(--mono);
