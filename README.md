@@ -1,5 +1,7 @@
 # Portfolio & Blog
 
+[![Tests](https://github.com/Jazzboy2567/portfolio-website/actions/workflows/test.yml/badge.svg)](https://github.com/Jazzboy2567/portfolio-website/actions/workflows/test.yml)
+
 **[Live site](https://jazzboy2567.github.io/portfolio-website/)** · [Vercel](https://matthew-nielsen.vercel.app) (also hosts the blog editor)
 
 My portfolio and a daily blog about what I'm building. It's a static site generated
@@ -91,6 +93,33 @@ which is handy for trying things out. It still needs `ADMIN_PASSWORD` and
 `SESSION_SECRET` in `.env`. The contact form sends real email if
 `EMAIL_USER`/`EMAIL_PASS` are set.
 
+## Tests
+
+End-to-end tests use [Playwright](https://playwright.dev) with TypeScript. They
+build the site, serve it locally, and run in Chromium at desktop and phone
+sizes:
+
+- **Pages:** every page loads with no console errors, failed requests or
+  sideways scrolling
+- **Links:** every internal link and `#anchor` resolves
+- **Content:** every project, certification and published post in `content/`
+  shows up; Blog search and filter chips work
+- **Interactions:** theme toggle, mobile menu, contact form and admin login
+  (the APIs are faked, so tests never send email or commit posts)
+- **Accessibility:** an [axe-core](https://github.com/dequelabs/axe-core) WCAG
+  2.1 AA scan of every page in both themes
+
+```bash
+npx playwright install chromium   # once
+npm test                          # run everything
+npm run test:ui                   # interactive runner with time-travel debugging
+npx playwright show-report        # open the last HTML report
+```
+
+They also run in GitHub Actions on every pull request
+([`.github/workflows/test.yml`](.github/workflows/test.yml)). If a run fails,
+download its `playwright-report` artifact for screenshots and traces.
+
 ## Layout
 
 ```
@@ -101,5 +130,6 @@ src/frontmatter.js  post front matter parse/serialize (build + API)
 scripts/build.js    content/ + public/ → dist/
 api/                Vercel functions: contact, login, posts (also mounted by server.js)
 api/_lib/           auth (session cookie) and post storage (GitHub or local disk)
+tests/              Playwright end-to-end tests (TypeScript)
 dist/               build output (not committed)
 ```
