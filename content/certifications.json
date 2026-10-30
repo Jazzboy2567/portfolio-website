@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "id": "aws-ccp",
+    "name": "AWS Certified Cloud Practitioner",
+    "issuer": "Amazon Web Services",
+    "date": null,
+    "status": "in-progress",
+    "url": null,
+    "skills": ["AWS", "Cloud", "IAM", "Security"]
+  }
+]
