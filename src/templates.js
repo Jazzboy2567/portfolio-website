@@ -130,7 +130,7 @@ function activityGrid(activity, root) {
     })
     .join('');
   return `<div class="activity">
-          <div class="activity-grid" style="--weeks:${activity.weeks}">${cells}</div>
+          <div class="activity-grid">${cells}</div>
           <dl class="activity-stats">
             <div><dt>Posts</dt><dd>${activity.total}</dd></div>
             <div><dt>Days posted</dt><dd>${activity.daysLogged}</dd></div>

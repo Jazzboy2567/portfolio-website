@@ -60,7 +60,8 @@ function loadPosts(projectsById, certsById) {
       projectRefs: lookup(projects, projectsById, 'project'),
       certRefs: lookup(certs, certsById, 'cert'),
       readingTime: Math.max(1, Math.round(words / 200)),
-      html: marked.parse(body),
+      // tabindex lets keyboard users scroll code blocks that overflow sideways
+      html: marked.parse(body).replace(/<pre>/g, '<pre tabindex="0">'),
     });
   }
   return posts.sort((a, b) => b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug));
